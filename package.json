@@ -1,0 +1,21 @@
+{
+  "name": "short-film-maker-backend",
+  "version": "1.0.0",
+  "description": "Backend for Short Film Maker App",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.13.0",
+    "mongoose": "^7.8.6",
+    "nodemailer": "^6.9.1",
+    "ws": "^8.18.0"
+  }
+}
