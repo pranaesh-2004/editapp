@@ -5,7 +5,6 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const WebSocket = require('ws');
 const { MongoClient } = require('mongodb');
-const cors = require('cors');
 app.use(cors({ origin: '*' })); // Allow all origins
 
 
