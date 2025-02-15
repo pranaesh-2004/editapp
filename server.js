@@ -7,6 +7,7 @@ const WebSocket = require('ws');
 const { MongoClient } = require('mongodb');
 
 
+
 // Express App Initialization
 const app = express();
 app.use(express.json());
@@ -42,6 +43,17 @@ const videoSchema = new mongoose.Schema({
   mergedDate: { type: Date, default: Date.now }
 });
 const Video = mongoose.model('Video', videoSchema);
+
+
+
+const EventRegistrationSchema = new mongoose.Schema({
+  eventName: String,
+  name: String,
+  email: String,
+  phone: String
+});
+
+const EventRegistration = mongoose.model('EventRegistration', EventRegistrationSchema);
 
 // User Registration
 app.post('/register', async (req, res) => {
@@ -132,6 +144,24 @@ app.get('/api/videos', async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 });
+app.post('/event-register', async (req, res) => {
+  try {
+      const newRegistration = new EventRegistration(req.body);
+      await newRegistration.save();
+      res.json({ message: 'Registration Successful!' });
+  } catch (error) {
+      res.status(500).json({ message: 'Error Registering!' });
+  }
+});
+app.get('/event-registrations', async (req, res) => {
+  try {
+      const registrations = await EventRegistration.find();
+      res.json(registrations);
+  } catch (error) {
+      res.status(500).json({ message: 'Error fetching registrations!' });
+  }
+});
+
 
 // WebSocket and MongoDB Integration for Comments
 const uri = "mongodb+srv://pranaesh19:pra2004@cluster0.bxx43.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
